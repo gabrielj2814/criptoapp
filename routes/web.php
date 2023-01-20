@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+// CoinRaking api https://developers.coinranking.com/
+Route::get("/test/coins", function () {
+
+    $url = "https://api.coinranking.com/v2/coins";
+    $curl = curl_init($url);
+
+    curl_setopt_array($curl, [
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => [
+            "x-access-toke: ".env("COINRANKING_KEY_API")
+        ]
+    ]);
+    $respuesta = curl_exec($curl);
+    return new Response($respuesta);
+    // print(env("COINRANKING_KEY_API"));
 });
