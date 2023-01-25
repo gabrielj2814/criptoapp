@@ -16,6 +16,20 @@ use Firebase\JWT\Key;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//  suscripcion a una cripto moneda y ver las cripto a las que estas suscripto mas su informacion
+//  calcura dora cripto a una monada fisica com usd o bolivar
+//  ver el valor de la critpo en dolares y en otras monedas como el euro, bolivares, jpy entre otros esto es estatico
+//  ver el historial de cambio de una cripto tan a la que este suscrita como a las que no
+//  comprar precios entre ayer y hoy de las cripto a las que ests suscrito
+//  comprar precios entre la semana pasada y esta de las cripto a las que ests suscrito
+
+// investicar como saber si vale la pena invertir o no en una cripto para agregarselo a la app
+
+// TODO: migraciones
+// TODO: modelo
+// TODO: registro
+// TODO: LOGIN
+// TODO: recuperar clave
 
 // CoinRaking api https://developers.coinranking.com/
 Route::get("/test/coins", function () {
