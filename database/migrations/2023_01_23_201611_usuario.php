@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class Usuario extends Migration
 {
+    protected $table= "usuario";
     /**
      * Run the migrations.
      *
@@ -14,6 +15,12 @@ class Usuario extends Migration
     public function up()
     {
         //
+        Schema::create("usuario",function(Blueprint $table){
+            $table->engine = "InnoDB";
+            $table->string("correo",225)->primary();
+            $table->string("nombre",140);
+            $table->string("status_usuario",1);
+        });
     }
 
     /**
@@ -23,6 +30,7 @@ class Usuario extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop("usuario");
+        Schema::dropIfExists("usuario");
     }
 }

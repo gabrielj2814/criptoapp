@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class PreguntaSeguridad extends Migration
 {
+    protected $table = "pregunta_seguridad";
     /**
      * Run the migrations.
      *
@@ -13,7 +14,14 @@ class PreguntaSeguridad extends Migration
      */
     public function up()
     {
-        //
+        Schema::create("pregunta_seguridad",function(Blueprint $table){
+            $table->engine = "InnoDB";
+            $table->increments("id_pregunta_seguridad");
+            $table->string("pregunta",255);
+            $table->string("respuesta",255);
+            $table->string("correo",255);
+            $table->foreign("correo")->references("correo")->on("usuario")->onUpdate("cascade")->onDelete("cascade");
+        });
     }
 
     /**

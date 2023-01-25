@@ -26,9 +26,11 @@ Route::get("/test/coins", function () {
     $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
     // print_r($decoded);
     // $url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
-    // $curl = curl_init($url);
-    // $respuesta = curl_exec($curl);
-    return new JsonResponse(["encriptado" =>$jwt,"desencriptado" => $decoded]);
+    $url = "https://api.coingecko.com/api/v3/coins/list";
+    $curl = curl_init($url);
+    $respuesta = curl_exec($curl);
+    // return new JsonResponse(["encriptado" =>$jwt,"desencriptado" => $decoded]);
+    return new JsonResponse($respuesta);
 });
 
 Route::view("/","home");
