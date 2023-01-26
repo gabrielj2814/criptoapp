@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
@@ -32,21 +33,23 @@ use Firebase\JWT\Key;
 // TODO: recuperar clave
 
 // CoinRaking api https://developers.coinranking.com/
-Route::get("/test/coins", function () {
-    $key = env("CLAVE_SECRETA");
+// Route::get("/test/coins", function () {
+//     $key = env("CLAVE_SECRETA");
 
-    $payload = ["mensaje" => "hola"];
-    $jwt = JWT::encode($payload, $key, 'HS256');
-    $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-    // print_r($decoded);
-    // $url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
-    $url = "https://api.coingecko.com/api/v3/coins/list";
-    $curl = curl_init($url);
-    $respuesta = curl_exec($curl);
-    // return new JsonResponse(["encriptado" =>$jwt,"desencriptado" => $decoded]);
-    return new JsonResponse($respuesta);
-});
-
+//     $payload = ["mensaje" => "hola"];
+//     $jwt = JWT::encode($payload, $key, 'HS256');
+//     $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+//     // print_r($decoded);
+//     // $url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
+//     $url = "https://api.coingecko.com/api/v3/coins/list";
+//     $curl = curl_init($url);
+//     $respuesta = curl_exec($curl);
+//     // return new JsonResponse(["encriptado" =>$jwt,"desencriptado" => $decoded]);
+//     return new JsonResponse($respuesta);
+// });
+// vistas
 Route::view("/","home");
 Route::view("/login","login");
 Route::view("/recuperar-cuenta","recuperar_cuenta");
+
+Route::post("/crear-cuenta",[UsuarioController::class,"crearCuenta"]);
