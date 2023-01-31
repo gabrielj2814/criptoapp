@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bacf9a452df56f1d2a5a051da8f4331b",
+    "content-hash": "a1261d6431b015f6e6104897f0a8d92f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1026,6 +1026,49 @@
                 }
             ],
             "time": "2022-10-26T14:07:24+00:00"
+        },
+        {
+            "name": "initphp/encryption",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/InitPHP/Encryption.git",
+                "reference": "60f8b0007fff45043925de0b2f052837a0d25ffe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/InitPHP/Encryption/zipball/60f8b0007fff45043925de0b2f052837a0d25ffe",
+                "reference": "60f8b0007fff45043925de0b2f052837a0d25ffe",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "InitPHP\\Encryption\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammet ŞAFAK",
+                    "email": "info@muhammetsafak.com.tr",
+                    "homepage": "https://www.muhammetsafak.com.tr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP OpenSSL/Sodium Encryption and Decryption",
+            "support": {
+                "issues": "https://github.com/InitPHP/Encryption/issues",
+                "source": "https://github.com/InitPHP/Encryption/tree/1.0"
+            },
+            "time": "2022-03-15T09:02:24+00:00"
         },
         {
             "name": "laravel/framework",

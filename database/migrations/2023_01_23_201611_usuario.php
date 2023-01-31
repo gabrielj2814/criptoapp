@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class Usuario extends Migration
 {
+    // con la propiedad table indicamos con que nombre se creara la tabla 
     protected $table= "usuario";
     /**
      * Run the migrations.
@@ -19,6 +20,7 @@ class Usuario extends Migration
             $table->engine = "InnoDB";
             $table->string("correo",225)->primary();
             $table->string("nombre",140);
+            $table->string("clave",255);
             $table->string("status_usuario",1);
         });
     }
