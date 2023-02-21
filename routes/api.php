@@ -22,13 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 #################
 #    Usuario    #
 #################
-// TODO: recuperar cuenta preguntas de seguridad
-// TODO: modificar perfil
-// TODO: cambiar contraseña
-// TODO: suspender cuenta
 Route::post("/crear-cuenta",[UsuarioController::class,"crearCuenta"]);
 ###############
 #    Login    #
 ###############
-// TODO: inciar sesion generar TOKEN
-// TODO: cerrar sesion
