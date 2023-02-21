@@ -47,9 +47,11 @@ use Firebase\JWT\Key;
 //     // return new JsonResponse(["encriptado" =>$jwt,"desencriptado" => $decoded]);
 //     return new JsonResponse($respuesta);
 // });
+
 // vistas
 Route::view("/","home");
-Route::view("/login","login");
-Route::view("/recuperar-cuenta","recuperar_cuenta");
 
+#################
+#    Usuario    #
+#################
 Route::post("/crear-cuenta",[UsuarioController::class,"crearCuenta"]);

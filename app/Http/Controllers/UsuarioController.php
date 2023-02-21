@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Repository\Implement;
 use App\Repository\Implement\UsuarioRepository;
+use Bcrypt\Bcrypt;
 
 class UsuarioController extends Controller
 {
@@ -22,19 +23,18 @@ class UsuarioController extends Controller
 
     function crearCuenta(Request $request)
     {
-        $OpenSSL= new OpenSSLDecryptController();
-
-        $correo = $request->input("correo");
-        $nombre = $request->input("nombre");
-        $clave = $request->input("clave");
-        $pregunta_1 = $request->input("pregunta_1");
-        $pregunta_2 = $request->input("pregunta_2");
-        $respuesta_1 = $request->input("respuesta_1");
-        $respuesta_2 = $request->input("respuesta_2");
-        $clave = $OpenSSL->encriptar($clave);
-        // $calveDesencriptada= $OpenSSL->desencriptar($claveEncriptada);
-        $respuesta = $this->_UsuarioRepository->crearUsuario($correo,$nombre,$clave);
-
-        return new JsonResponse(["mensaje" => "hola"]);
+        $repuestaServidor = ["status_code" => null, "respuesta" => []];
+        $Bcrypt = new Bcrypt();
+        $version_bcrypt="2a";
+        $clave=$Bcrypt->encrypt($request->clave,$version_bcrypt);
+        $respuesta = $this->_UsuarioRepository->crearUsuario($request->correo,$request->nombre,$clave);
+        if($respuesta){
+            $repuestaServidor["status_code"] = 200;
+            return new JsonResponse( $repuestaServidor);
+        }
+        else{
+            $repuestaServidor["status_code"] = 401;
+            return new JsonResponse($repuestaServidor);
+        }
     }
 }
