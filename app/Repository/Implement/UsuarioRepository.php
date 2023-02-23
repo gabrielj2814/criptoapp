@@ -6,21 +6,30 @@ use App\Models\UsuarioModel;
 
 class UsuarioRepository {
 
-    private $_UsuarioModelo;
+    private $UsuarioModelo;
 
-    function __construct(UsuarioModel $UsuarioModelo)
+    function __construct(UsuarioModel $_UsuarioModelo)
     {
-        $this->_UsuarioModelo=$UsuarioModelo;
+        $this->UsuarioModelo=$_UsuarioModelo;
     }
 
     public function crearUsuario($correo,$nombre,$clave){
 
-        $this->_UsuarioModelo->correo=$correo;
-        $this->_UsuarioModelo->nombre=$nombre;
-        $this->_UsuarioModelo->clave=$clave;
-        $this->_UsuarioModelo->status_usuario="1";
-        return $this->_UsuarioModelo->save();
-
+        $this->UsuarioModelo->correo=$correo;
+        $this->UsuarioModelo->nombre=$nombre;
+        $this->UsuarioModelo->clave=$clave;
+        $this->UsuarioModelo->status_usuario="1";
+        $this->UsuarioModelo->save();
+        return $this->UsuarioModelo;
     }
+
+    // public function buscarPorCorreo($correo){
+    //     return $this->UsuarioModelo->where("correo","=",$correo)->get();
+    // }
+
+    public function buscarPorCorreo($correo){
+        return $this->UsuarioModelo->find($correo);
+    }
+
 
 }

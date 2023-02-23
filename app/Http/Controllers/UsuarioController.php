@@ -12,28 +12,33 @@ use Bcrypt\Bcrypt;
 class UsuarioController extends Controller
 {
     //
-    private $_UsuarioRepository;
+    private $respuestaServer=["status_code" => null, "mensaje" => null, "respuesta" => []];
 
-    function __construct(UsuarioRepository $UsuarioRepository)
+    private $UsuarioRepository;
+
+    function __construct(UsuarioRepository $_UsuarioRepository)
     {
-        $this->_UsuarioRepository = $UsuarioRepository;
+        $this->UsuarioRepository = $_UsuarioRepository;
     }
 
 
 
     function crearCuenta(Request $request)
     {
-        $repuestaServidor = ["status_code" => null, "respuesta" => []];
+        $repuestaServidor = $this->respuestaServer;
         $Bcrypt = new Bcrypt();
         $version_bcrypt="2a";
         $clave=$Bcrypt->encrypt($request->clave,$version_bcrypt);
-        $respuesta = $this->_UsuarioRepository->crearUsuario($request->correo,$request->nombre,$clave);
-        if($respuesta){
+        $validarExistenciaUsuario=$this->UsuarioRepository->buscarPorCorreo($request->correo);
+        if(is_null($validarExistenciaUsuario)){
+            $this->UsuarioRepository->crearUsuario($request->correo,$request->nombre,$clave);
             $repuestaServidor["status_code"] = 200;
+            $repuestaServidor["mensaje"] = "usuaruo creado con exito";
             return new JsonResponse( $repuestaServidor);
         }
         else{
             $repuestaServidor["status_code"] = 401;
+            $repuestaServidor["mensaje"] = "ya esiste un usuario con este correo electronico => ".$request->correo;
             return new JsonResponse($repuestaServidor);
         }
     }
