@@ -28,3 +28,4 @@ Route::post("/crear-cuenta",[UsuarioController::class,"crearCuenta"]);
 #    Login    #
 ###############
 Route::post("/login",[LoginController::class,"login"]);
+Route::post("/logout",[LoginController::class,"logout"]);
