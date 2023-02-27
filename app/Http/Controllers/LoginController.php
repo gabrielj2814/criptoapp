@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    private $respuestaServer=["status_code" => null, "mensaje" => null, "respuesta" => []];
+    private $respuestaServer=["status_code" => null, "mensaje" => null, "data" => []];
     private $UsuarioRepository;
 
     function __construct(UsuarioRepository $_UsuarioRepository)
@@ -43,7 +43,7 @@ class LoginController extends Controller
                 $respuestaConsulta->save();
                 $respuesta["status_code"]=200;
                 $respuesta["mensaje"]="sesion creada con existo";
-                $respuesta["respuesta"]=[
+                $respuesta["data"]=[
                     "token" => $token
                 ];
                 return new JsonResponse($respuesta);

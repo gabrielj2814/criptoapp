@@ -27,7 +27,22 @@ class UsuarioRepository {
     //     return $this->UsuarioModelo->where("correo","=",$correo)->get();
     // }
 
-    public function buscarPorCorreo($correo){
+    public function buscarPorCorreo(string $correo){
+        return $this->UsuarioModelo->find($correo);
+    }
+
+    public function eliminar(string $correo){
+        $usuario=$this->UsuarioModelo->find($correo);
+        if($usuario){
+            $usuario->delete();
+        }
+    }
+
+    public function consultarTodos(){
+        return UsuarioModel::all();
+    }
+
+    public function consultarUnUsuario(string $correo){
         return $this->UsuarioModelo->find($correo);
     }
 
