@@ -21,6 +21,10 @@ class Usuario extends Migration
             $table->string("correo",225)->primary();
             $table->string("nombre",140);
             $table->string("clave",255);
+            $table->string("pregunta_1",255);
+            $table->string("pregunta_2",255);
+            $table->string("respuesta_1",255);
+            $table->string("respuesta_2",255);
             $table->string("token_usuario",3000)->nullable();
             $table->string("status_usuario",1);
         });

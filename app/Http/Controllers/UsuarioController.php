@@ -31,7 +31,7 @@ class UsuarioController extends Controller
         $clave=$Bcrypt->encrypt($request->clave,$version_bcrypt);
         $validarExistenciaUsuario=$this->UsuarioRepository->buscarPorCorreo($request->correo);
         if(is_null($validarExistenciaUsuario)){
-            $this->UsuarioRepository->crearUsuario($request->correo,$request->nombre,$clave);
+            $this->UsuarioRepository->crearUsuario($request->correo,$request->nombre,$clave,$request->pregunta_1,$request->pregunta_2,$request->respuesta_1,$request->respuesta_2);
             $repuestaServidor["status_code"] = 200;
             $repuestaServidor["mensaje"] = "usuario creado con exito";
             return new JsonResponse( $repuestaServidor);
@@ -79,6 +79,25 @@ class UsuarioController extends Controller
             $repuestaServidor["mensaje"] = "el usuario no a sido encontrado";
         }
         return new JsonResponse($repuestaServidor);
-            
+    }
+
+    public function consultarPreguntasUsuario(Request $request): JsonResponse {
+        $correo= $request->correo;
+        $respuesta= $this->UsuarioRepository->consultarPreguntasSeguridadUsuario($correo);
+        if(count($respuesta)>0){
+            $repuestaServidor = $this->respuestaServer;
+            $repuestaServidor["status_code"] = 200;
+            $repuestaServidor["mensaje"] = "consultar completada";
+            $repuestaServidor["data"]= [ 
+                "usuario" => $respuesta
+            ];
+            return new JsonResponse($repuestaServidor);
+        }
+        else{
+            $repuestaServidor = $this->respuestaServer;
+            $repuestaServidor["status_code"] = 404;
+            $repuestaServidor["mensaje"] = "error al consultar nose a encontrado al usuario";
+            return new JsonResponse($repuestaServidor);
+        }
     }
 }

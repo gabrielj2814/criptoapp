@@ -28,6 +28,7 @@ Route::prefix("/v1")->group(function() {
         Route::get("/",[UsuarioController::class,"consultarTodos"]);
         Route::get("/{correo}",[UsuarioController::class,"consultar"]);
         Route::post("/crear-cuenta",[UsuarioController::class,"crearCuenta"]);
+        Route::get("/consultar-preguntas-seguridad/{correo}", [UsuarioController::class,"consultarPreguntasUsuario"]);
         // endpoitn que requiere validar token de sesion
         Route::delete("/eliminar/{correo}", [UsuarioController::class,"eliminarCuenta"]);
     });
