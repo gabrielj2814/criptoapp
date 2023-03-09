@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CriptoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
@@ -37,6 +38,13 @@ Route::prefix("/v1")->group(function() {
     ###############
     Route::post("/login",[LoginController::class,"login"]);
     Route::post("/logout",[LoginController::class,"logout"]);
+    ###############
+    #    Cripto   #
+    ###############
+    Route::prefix("/cripto")->group(function() {
+        Route::get("/", [CriptoController::class,"listar"]);
+        Route::get("/info", [CriptoController::class,"consultarMultipleInfoCriptos"]);
+    });
 
 
 });

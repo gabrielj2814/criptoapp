@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class Usuario extends Migration
 {
-    // con la propiedad table indicamos con que nombre se creara la tabla 
+    // con la propiedad table indicamos con que nombre se creara la tabla
     protected $table= "usuario";
     /**
      * Run the migrations.

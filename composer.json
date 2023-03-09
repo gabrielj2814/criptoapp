@@ -8,12 +8,11 @@
         "php": "^7.3|^8.0",
         "firebase/php-jwt": "^6.3",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "polarising/bcrypt": "^1.0",
-        "spatie/laravel-data": "^1.5"
+        "polarising/bcrypt": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -26,7 +25,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Spatie\\LaravelData\\": "vendor/spatie/laravel-data/src",
+            "Guzzlehttp\\Guzzle\\": "vendor/guzzlehttp/guzzle/src",
             "Firebase\\JWT\\": "vendor/firebase/php-jwt/src",
             "Polarising\\Bcrypt\\": "vendor/polarising/bcrypt/src",
             "Database\\Factories\\": "database/factories/",
