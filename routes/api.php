@@ -43,8 +43,7 @@ Route::prefix("/v1")->group(function() {
     ###############
     Route::prefix("/cripto")->group(function() {
         Route::get("/", [CriptoController::class,"listar"]);
-        Route::get("/info", [CriptoController::class,"consultarMultipleInfoCriptos"]);
+        Route::get("/info", [CriptoController::class,"obtenerInfoCriptos"]);
     });
-
 
 });

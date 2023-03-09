@@ -16,8 +16,7 @@ class CriptoController extends Controller
 
     public  function listar(Request $request){
         //
-        $cliente= new Client();
-        $respuesta = $cliente->request("GET",$this->urlBase."/coins/list");
+        $respuesta = $this->listarCriptos();
         if($respuesta->getStatusCode()){
             $this->respuestaServer["status_code"] = 200;
             $this->respuestaServer["mensaje"] = "consulta completada";
@@ -30,17 +29,15 @@ class CriptoController extends Controller
         return new JsonResponse($this->respuestaServer);
     }
 
-    public function consultarMultipleInfoCriptos(Request $request): JsonResponse{
-        $listaId=$request->idsCripto;
-        $respuestas=[];
+    private function listarCriptos(){
         $cliente= new Client();
-        foreach ($listaId as  $idCripto) {
-            $respuesta= $cliente->get($this->urlBase."/coins/".$idCripto);
-            if($respuesta->getStatusCode()){
-                $respuestaBody=json_decode((string) $respuesta->getBody());
-                $respuestas[]=$respuestaBody;
-            }
-        }
+        $respuesta = $cliente->request("GET",$this->urlBase."/coins/list");
+        return $respuesta;
+    }
+
+    public function obtenerInfoCriptos(Request $request): JsonResponse{
+        $listaId=$request->idsCripto;
+        $respuestas=$this->consultarInfoMultipleCriptos($listaId);
         if(count($respuestas)>0){
             $this->respuestaServer["status_code"] = 200;
             $this->respuestaServer["mensaje"] = "consulta completada";
@@ -52,5 +49,18 @@ class CriptoController extends Controller
         }
 
         return new JsonResponse($this->respuestaServer);
+    }
+
+    private function consultarInfoMultipleCriptos($listaId){
+        $respuestas=[];
+        $cliente= new Client();
+        foreach ($listaId as  $idCripto) {
+            $respuesta= $cliente->get($this->urlBase."/coins/".$idCripto);
+            if($respuesta->getStatusCode()){
+                $respuestaBody=json_decode((string) $respuesta->getBody());
+                $respuestas[]=$respuestaBody;
+            }
+        }
+        return $respuestas;
     }
 }
