@@ -8,10 +8,10 @@
 </head>
 <body>
     {{-- 161531 --}}
-    <main>
+    <main class="dashboard">
         @yield("main")
     </main>
-    <link rel="stylesheet" href="{{asset('css/index.css')}}">
-    <script src="{{asset('js/inicio.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/index.css?v='.microtime())}}">
+    <script src="{{asset('js/inicio.js?v='.microtime())}}"></script>
 </body>
 </html>
